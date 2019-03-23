@@ -43,6 +43,9 @@ class Encryptor:
 
 dirFile = os.path.join(os.path.expanduser("~"), sys.argv[1])
 dirKey = os.path.join(os.path.expanduser("~"), sys.argv[2])
+# Neu option = 0 -> encript / option = 1 -> decrypt
+option = sys.argv[3]
+
 
 file_key = open(dirKey,"r")
 key_ = file_key.readline()
@@ -53,30 +56,9 @@ key = key_.encode()
 if (len(key) in [16,24,32]):
     enc = Encryptor(key)
 
-    # choice = int(input(
-    #         "1. Press '1' to encrypt file.\n2. Press '2' to decrypt file.\n3. Press '3' to exit.\n"))
-    #if choice == 1:
-    print(enc.encrypt_file(dirFile))
-    # elif choice == 2:
-    #     enc.decrypt_file(dirFile)
-    # elif choice == 3:
-    #     exit()
-    # else:
-    #     print("Please select a valid option!")
+    if option == "0":
+        print(enc.encrypt_file(dirFile))
+    elif option == "1":
+        print(enc.decrypt_file(dirFile))
 else:
     print("Error key.Length of key must be 16 or 24 or 32")
-# if (len(key) in [16,24,32]):
-#     enc = Encryptor(key)
-
-#     choice = int(input(
-#             "1. Press '1' to encrypt file.\n2. Press '2' to decrypt file.\n3. Press '3' to exit.\n"))
-#     if choice == 1:
-#         enc.encrypt_file(dirFile)
-#     elif choice == 2:
-#         enc.decrypt_file(dirFile)
-#     elif choice == 3:
-#         exit()
-#     else:
-#         print("Please select a valid option!")
-# else:
-#     print("Error key.Length of key must be 16 or 24 or 32")

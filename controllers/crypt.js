@@ -25,13 +25,13 @@ exports.postDES = (req, res, next) => {
         req.body.fileKeyEn
     );
 
-    // console.log("Vo nao babe1:", pathFileEn);
-    // console.log("Vo nao babe2:", pathFileKeyEn);
     var PythonShell = require('python-shell');
 
     var options = {
         mode: 'text',
         //args: [pathFileEn, pathFileKeyEn, '--option=123']
+        // 0: encrypt
+        // 1: decrypt
         args: [pathFileEn, pathFileKeyEn]
     };
 
@@ -41,7 +41,6 @@ exports.postDES = (req, res, next) => {
         // results is an array consisting of messages collected during execution
         console.log('results: %j', results);
     });
-    
 
     res.render('DES', {
         path: '/cryptDES'
@@ -60,27 +59,51 @@ exports.getAES = (req, res, next) => {
 }
 
 exports.postAES = (req, res, next) => {
-    console.log(req.body.fileEn);
-    console.log(req.body.fileKeyEn);
-    const pathFileEn = path.join(
-        path.dirname(process.mainModule.filename),
-        'data',
-        req.body.fileEn
-    );
-    const pathFileKeyEn = path.join(
-        path.dirname(process.mainModule.filename),
-        'data',
-        req.body.fileKeyEn
-    );
+    option = null;
+    pathFile = null;
+    pathFileKey = null;
 
-    // console.log("Vo nao babe1:", pathFileEn);
-    // console.log("Vo nao babe2:", pathFileKeyEn);
+    console.log(typeof req.body.fileEn)
+    console.log(req.body.fileEn.toString())
+
+    if (req.body.fileEn !== "") {
+        option = 0;
+        pathFile = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileEn
+        );
+        pathFileKey = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileKeyEn
+        );
+    }
+    else if (req.body.fileDe !== "") {
+        option = 1;
+        pathFile = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileDe
+        );
+        pathFileKey = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileKeyDe
+        );
+    }
+
+    
+    console.log(pathFile);
+    console.log(pathFileKey);
+    console.log(option);
+
     var PythonShell = require('python-shell');
     
     var options = {
         mode: 'text',
         //args: [pathFileEn, pathFileKeyEn, '--option=123']
-        args: [pathFileEn, pathFileKeyEn]
+        args: [pathFile, pathFileKey, option]
     };
 
 
