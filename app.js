@@ -5,9 +5,6 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // import mini app express
-const adminRoute = require('./routers/admin');
-const shopRouter = require('./routers/shop');
-
 const cryptRouter = require('./routers/crypt');
 
 const errorsController = require('./controllers/errors');
@@ -30,13 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(rootPath, 'public')));
 
 
-app.use('/admin', adminRoute.router);
-app.use(shopRouter);
-
-
 app.use(cryptRouter);
-
-
 
 // if you don't use path, path will be '/' and don't care about method 
 app.use(errorsController.getError404);
