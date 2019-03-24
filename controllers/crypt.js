@@ -17,39 +17,71 @@ exports.getBlowfish = (req, res, next) => {
 }
 
 exports.postBlowfish = (req, res, next) => {
-    console.log(req.body.fileEn);
-    console.log(req.body.fileKeyEn);
-    const pathFileEn = path.join(
-        path.dirname(process.mainModule.filename),
-        'data',
-        req.body.fileEn
-    );
-    const pathFileKeyEn = path.join(
-        path.dirname(process.mainModule.filename),
-        'data',
-        req.body.fileKeyEn
-    );
+    
+
+    option = null;
+    pathFile = null;
+    pathFileKey = null;
+
+    console.log(typeof req.body.fileEn)
+    console.log(req.body.fileEn.toString())
+
+    if (req.body.fileEn !== "" && req.body.fileEn.indexOf(".enc") < 0) {
+        option = 0;
+        pathFile = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileEn
+        );
+        pathFileKey = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileKeyEn
+        );
+    }
+    else if (req.body.fileDe !== "") {
+        option = 1;
+        pathFile = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileDe
+        );
+        pathFileKey = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileKeyDe
+        );
+    }
+
+    
+    console.log(pathFile);
+    console.log(pathFileKey);
+    console.log(option);
 
     var PythonShell = require('python-shell');
-
+    
     var options = {
         mode: 'text',
         //args: [pathFileEn, pathFileKeyEn, '--option=123']
-        // 0: encrypt
-        // 1: decrypt
-        args: [pathFileEn, pathFileKeyEn]
+        args: [pathFile, pathFileKey, option]
     };
 
 
-    PythonShell.run('python/hello.py', options, function (err, results) {
+    PythonShell.run('python/Blowfish.py', options, function (err, results) {
         if (err) throw err;
         // results is an array consisting of messages collected during execution
         console.log('results: %j', results);
     });
-
+    
     res.render('algo', {
-        path: '/cryptBlowfish'
+        path: '/cryptBlowfish',
+        algo: "Blowfish",
+        otherAlgo: {
+            p0: "RSA",
+            p1: "AES"
+        }
     });
+    
 }
 
 exports.getRSA = (req, res, next) => {
@@ -62,6 +94,71 @@ exports.getRSA = (req, res, next) => {
         }
     });
 }
+exports.postRSA = (req, res, next) => {
+    option = null;
+    pathFile = null;
+    pathFileKey = null;
+
+    console.log(typeof req.body.fileEn)
+    console.log(req.body.fileEn.toString())
+
+    if (req.body.fileEn !== "" && req.body.fileEn.indexOf(".enc") < 0) {
+        option = 0;
+        pathFile = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileEn
+        );
+        pathFileKey = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileKeyEn
+        );
+    }
+    else if (req.body.fileDe !== "") {
+        option = 1;
+        pathFile = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileDe
+        );
+        pathFileKey = path.join(
+            path.dirname(process.mainModule.filename),
+            'data',
+            req.body.fileKeyDe
+        );
+    }
+
+    
+    console.log(pathFile);
+    console.log(pathFileKey);
+    console.log(option);
+
+    var PythonShell = require('python-shell');
+    
+    var options = {
+        mode: 'text',
+        //args: [pathFileEn, pathFileKeyEn, '--option=123']
+        args: [pathFile, pathFileKey, option]
+    };
+
+
+    PythonShell.run('python/RSA.py', options, function (err, results) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        console.log('results: %j', results);
+    });
+    
+    res.render('algo', {
+        path: '/cryptRSA',
+        algo: "RSA",
+        otherAlgo: {
+            p0: "Blowfish",
+            p1: "AES"
+        }
+    });
+}
+
 exports.getAES = (req, res, next) => {
     res.render('algo', {
         path: '/cryptAES',
@@ -81,7 +178,7 @@ exports.postAES = (req, res, next) => {
     console.log(typeof req.body.fileEn)
     console.log(req.body.fileEn.toString())
 
-    if (req.body.fileEn !== "" && req.body.fileEn.search(".enc") == false) {
+    if (req.body.fileEn !== "" && req.body.fileEn.indexOf(".enc") < 0) {
         option = 0;
         pathFile = path.join(
             path.dirname(process.mainModule.filename),

@@ -14,6 +14,8 @@ router.post('/cryptBlowfish', cryptController.postBlowfish);
 
 router.get('/cryptRSA', cryptController.getRSA);
 
+router.post('/cryptRSA', cryptController.postRSA);
+
 router.get('/cryptAES', cryptController.getAES);
 
 router.post('/cryptAES', cryptController.postAES);
