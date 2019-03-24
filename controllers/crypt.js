@@ -5,13 +5,18 @@ const path = require('path');
 //     'products.json');
 
 
-exports.getDES = (req, res, next) => {
-    res.render('DES', {
-        path: '/cryptDES'
+exports.getBlowfish = (req, res, next) => {
+    res.render('algo', {
+        path: '/cryptBlowfish',
+        algo: "Blowfish",
+        otherAlgo: {
+            p0: "RSA",
+            p1: "AES"
+        }
     });
 }
 
-exports.postDES = (req, res, next) => {
+exports.postBlowfish = (req, res, next) => {
     console.log(req.body.fileEn);
     console.log(req.body.fileKeyEn);
     const pathFileEn = path.join(
@@ -42,19 +47,29 @@ exports.postDES = (req, res, next) => {
         console.log('results: %j', results);
     });
 
-    res.render('DES', {
-        path: '/cryptDES'
+    res.render('algo', {
+        path: '/cryptBlowfish'
     });
 }
 
 exports.getRSA = (req, res, next) => {
-    res.render('RSA', {
-        path: '/cryptRSA'
+    res.render('algo', {
+        path: '/cryptRSA',
+        algo: "RSA",
+        otherAlgo: {
+            p0: "Blowfish",
+            p1: "AES"
+        }
     });
 }
 exports.getAES = (req, res, next) => {
-    res.render('AES', {
-        path: '/cryptAES'
+    res.render('algo', {
+        path: '/cryptAES',
+        algo: "AES",
+        otherAlgo: {
+            p0: "RSA",
+            p1: "Blowfish"
+        }
     });
 }
 
@@ -66,7 +81,7 @@ exports.postAES = (req, res, next) => {
     console.log(typeof req.body.fileEn)
     console.log(req.body.fileEn.toString())
 
-    if (req.body.fileEn !== "") {
+    if (req.body.fileEn !== "" && req.body.fileEn.search(".enc") == false) {
         option = 0;
         pathFile = path.join(
             path.dirname(process.mainModule.filename),
@@ -113,8 +128,13 @@ exports.postAES = (req, res, next) => {
         console.log('results: %j', results);
     });
     
-    res.render('AES', {
-        path: '/cryptAES'
+    res.render('algo', {
+        path: '/cryptAES',
+        algo: "AES",
+        otherAlgo: {
+            p0: "RSA",
+            p1: "Blowfish"
+        }
     });
 }
  

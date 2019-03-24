@@ -6,7 +6,7 @@
     
         <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="/css/style.css">
-        <title>AES Algorithm</title>
+        <title><%= algo %> Algorithm</title>
     </head>
 
     <body>
@@ -62,19 +62,18 @@
                     </div>
             </form>
 
-            <button class="btn-title">AES Algorithm</button>
+            <button class="btn-title"><%= algo %> Algorithm</button>
 
-            <form class="RSA-form" action="/cryptRSA" method="GET">
-                <button class="btn-RSA"><i class="ion-md-arrow-round-back"></i>RSA Algorithm</button>
+            <form class="<%= otherAlgo.p0 %>-form" action="/crypt<%= otherAlgo.p0 %>" method="GET">
+                <button class="btn-<%=otherAlgo.p0 %> btn-150"><i class="ion-md-arrow-round-back"></i><%= otherAlgo.p0%> </button>
             </form>
 
-            <form class="DES-form" action="/cryptDES" method="GET">
-                <button class="btn-AES">DES Algorithm&nbsp;<i class="ion-md-arrow-round-forward"></i></button>
+            <form class="<%= otherAlgo.p1 %>-form" action="/crypt<%= otherAlgo.p1 %>" method="GET">
+                <button class="btn-<%= otherAlgo.p1 %> btn-850"><%= otherAlgo.p1 %>&nbsp;&nbsp;&nbsp;<i class="ion-md-arrow-round-forward"></i></button>
             </form>
             <!-- <input type="text" placeholder="Final" class="final-score"> -->
         </div>
     
         <!--<script src="app.js"></script>-->
-        <script src="challenges.js"></script>
     </body>
 </html>

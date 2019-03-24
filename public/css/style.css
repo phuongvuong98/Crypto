@@ -170,19 +170,22 @@ i {
     left: 780px;
 }
 
-.btn-DES{
+.btn-Blowfish{
     top: 503px;
-    left: 130px;
-    width: 300px;
+    left: 850px;
+    width: 320px;
 }
 
 .btn-RSA { 
     top: 503px;
     left: 130px;
-    width: 300px;
+    width: 320px;
 }
 .btn-AES { 
     top: 503px;
     left: 890px;
-    width: 300px;
+    width: 320px;
 }
+
+.btn-150 {left: 150px;}
+.btn-850 {left: 850px;}

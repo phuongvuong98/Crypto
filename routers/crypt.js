@@ -8,9 +8,9 @@ const rootPath = require('../util/path');
 const cryptController = require('../controllers/crypt');
 
 
-router.get('/cryptDES', cryptController.getDES);
+router.get('/cryptBlowfish', cryptController.getBlowfish);
 
-router.post('/cryptDES', cryptController.postDES);
+router.post('/cryptBlowfish', cryptController.postBlowfish);
 
 router.get('/cryptRSA', cryptController.getRSA);
 
