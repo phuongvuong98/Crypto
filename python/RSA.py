@@ -57,6 +57,7 @@ class Encryptor:
             with open(self.file + ".enc", 'wb') as fout:
                 fout.write(b64EncryptedData)
                 fout.close()
+            os.remove(fileName)
 
     def DecryptFileRSA(self):
         fileName = self.file
@@ -94,9 +95,10 @@ class Encryptor:
 
             #return the decompressed decrypted data
             decryptedData =  zlib.decompress(zipDecryptedData)
-            with open(self.file[:-4], 'wb') as fout:
+            with open(fileName[:-4], 'wb') as fout:
                 fout.write(decryptedData)
                 fout.close()
+            os.remove(fileName)
 
 dirFile = os.path.join(os.path.expanduser("~"), sys.argv[1])
 dirKey = os.path.join(os.path.expanduser("~"), sys.argv[2])
