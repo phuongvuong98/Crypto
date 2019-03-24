@@ -2,26 +2,6 @@
 *** GENERAL
 **********************************************/
 
-.final-score {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 520px;
-    color: #555;
-    font-size: 18px;
-    font-family: 'Lato';
-    text-align: center;
-    padding: 10px;
-    width: 160px;
-    text-transform: uppercase;
-}
-
-.final-score:focus { outline: none; }
-
-#dice-1 { top: 120px; }
-#dice-2 { top: 250px; }
-
-
 * {
     margin: 0;
     padding: 0;
@@ -36,7 +16,7 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg);
+    background-image: linear-gradient(#d84d6ee0, rgba(202, 86, 65, 0.904)), url(back.jpg);
     background-size: cover;
     background-position: center;
     font-family: Lato;
@@ -92,24 +72,6 @@ body {
 
 .active { background-color: #f7f7f7; }
 .active .algo-name { font-weight: 300; }
-
-/* .active .algo-name::after {
-    content: "\2022";
-    font-size: 47px;
-    position: absolute;
-    color: #EB4D4D;
-    top: -7px;
-    right: 10px;
-} */
-
-.algo-current-box {
-    background-color: #EB4D4D;
-    color: #fff;
-    width: 40%;
-    margin: 0 auto;
-    padding: 12px;
-    text-align: center;
-}
 
 .algo-current-label {
     text-transform: uppercase;
@@ -187,5 +149,11 @@ i {
     width: 320px;
 }
 
+h1 {
+    background: #93291E;
+    color: #fff;
+}
+
 .btn-150 {left: 150px;}
 .btn-850 {left: 850px;}
+.center {text-align: center;}

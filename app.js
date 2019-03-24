@@ -21,8 +21,10 @@ const path = require('path');
 // import path root
 const rootPath = require('./util/path'); 
 
-app.use(bodyParser.urlencoded({extended: true}));
-
+// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 // user should be able to access public folder and
 app.use(express.static(path.join(rootPath, 'public')));
 

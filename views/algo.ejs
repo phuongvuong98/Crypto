@@ -8,10 +8,32 @@
         <link type="text/css" rel="stylesheet" href="/css/style.css">
         <title><%= algo %> Algorithm</title>
     </head>
-
+    <% if (algo == "Blowfish") {%>
+        <style type="text/css">
+            body { 
+                background-image: linear-gradient(#11998e, #38ef7d), url(back.jpg);
+            }
+            i,.btn-title  {
+                color: #11998e;
+            }
+        </style>
+    <% } else if (algo == "RSA") { %>
+        <style type="text/css">
+            body { 
+                background-image: linear-gradient(#9CECFB, #0052D4), url(back.jpg);
+            }
+            i, .btn-title {
+                color: #0052D4;
+            }
+        </style>
+    <% } %>
+    
     <body>
         <div class="wrapper clearfix">
-            <form class="AES-form" action="/cryptAES" method="POST">
+                <% if (error.value == -1) { %>
+                    <h1 class="center">Wrong input. Please input again!</h1>
+                <% } %>
+            <form class="<%= algo %>-form" action="/crypt<%= algo %>" method="POST">
             <div class="algo-0-panel active">
                         <div class="algo-name" id="name-0">Encription</div>
                             <div class="form-control">
@@ -31,7 +53,7 @@
                             </div>
 
                             <div class="form-control">
-                                <button type="submit" name="Encrypt" class="btn-en"><i class="ion-ios-cog"></i>Encrypt</button>
+                                <button type="submit" name="Encrypt" class="btn-en" id="Encrypt"><i class="ion-ios-cog"></i>Encrypt</button>
                             </div>
 
                         
@@ -56,7 +78,7 @@
                             </div>
 
                             <div class="form-control">
-                                <button type="submit" name="Decrypt" class="btn-de"><i class="ion-md-construct"></i>Decrypt</button>
+                                <button type="submit" name="Decrypt" class="btn-de" id="Decrypt"><i class="ion-md-construct"></i>Decrypt</button>
                             </div>
                     
                     </div>
@@ -74,6 +96,6 @@
             <!-- <input type="text" placeholder="Final" class="final-score"> -->
         </div>
     
-        <!--<script src="app.js"></script>-->
+        <script src="/js/main.js"></script>
     </body>
 </html>
