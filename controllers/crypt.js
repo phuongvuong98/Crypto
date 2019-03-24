@@ -185,7 +185,7 @@ exports.getAES = (req, res, next) => {
 
 exports.postAES = (req, res, next) => {
     if (req.body.fileEn !== "" && req.body.fileKeyEn !== "") {
-        handlePost(req.body.fileEn, req.body.fileKeyEn, req.body.fileDe, req.body.fileKeyDe, 'python/RSA.py');
+        handlePost(req.body.fileEn, req.body.fileKeyEn, req.body.fileDe, req.body.fileKeyDe, 'python/AES.py');
         res.render('algo', {
             path: '/cryptAES',
             algo: "AES",
@@ -200,7 +200,7 @@ exports.postAES = (req, res, next) => {
         return;
     }
     else if (req.body.fileDe !== "" && req.body.fileKeyDe !== "") {
-        handlePost(req.body.fileEn, req.body.fileKeyEn, req.body.fileDe, req.body.fileKeyDe, 'python/RSA.py');
+        handlePost(req.body.fileEn, req.body.fileKeyEn, req.body.fileDe, req.body.fileKeyDe, 'python/AES.py');
         res.render('algo', {
             path: '/cryptAES',
             algo: "AES",
